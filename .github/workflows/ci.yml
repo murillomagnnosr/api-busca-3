@@ -26,8 +26,17 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Run tests
-      run: pytest tests/ -v
+    - name: Run Unit Tests
+      run: pytest tests/test_unit.py -v
+
+    - name: Run E2E Tests
+      run: pytest tests/test_e2e.py -v
+
+    - name: Run Mutation Tests
+      run: pytest tests/test_mutation.py -v
+
+    - name: Run all tests summary
+      run: pytest tests/ -v --tb=short
 
     - name: Upload coverage
       uses: codecov/codecov-action@v4
